@@ -311,7 +311,7 @@ static int wait_for_transfers_inflight(struct uart_port *uport)
 	geni_status = geni_read_reg_nolog(uport->membase, SE_GENI_STATUS);
 	/* Possible stop rx is called before this. */
 	if (!(geni_status & S_GENI_CMD_ACTIVE))
-		goto exit;
+		return 0;
 
 	while (iter < WAIT_XFER_MAX_ITER) {
 		if (check_transfers_inflight(uport)) {
@@ -335,8 +335,6 @@ static int wait_for_transfers_inflight(struct uart_port *uport)
 			"%s IOS 0x%x geni status 0x%x rx: fifo 0x%x dma 0x%x\n",
 		__func__, geni_ios, geni_status, rx_fifo_status, rx_dma);
 	}
-exit:
-	return 0;
 }
 
 static int vote_clock_on(struct uart_port *uport)
