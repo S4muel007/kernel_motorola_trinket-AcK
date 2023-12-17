@@ -306,6 +306,15 @@ config BACKLIGHT_PM8941_WLED
 	  If you have the Qualcomm PM8941, say Y to enable a driver for the
 	  WLED block.
 
+config BACKLIGHT_QCOM_SPMI_WLED
+	tristate "Qualcomm Technologies, Inc. WLED Driver"
+	select REGMAP
+	help
+	  If you have the Qualcomm Technologies, Inc. WLED used for backlight
+	  control, say Y to enable a driver for the  WLED block. This driver
+	  provides the interface to the display driver to adjust the brightness
+	  of the display backlight. This supports PMI8998 currently.
+
 config BACKLIGHT_SAHARA
 	tristate "Tabletkiosk Sahara Touch-iT Backlight Driver"
 	depends on X86
@@ -466,6 +475,22 @@ config BACKLIGHT_ARCXCNN
 	help
 	  If you have an ARCxCnnnn family backlight say Y to enable
 	  the backlight driver.
+
+config BACKLIGHT_LM3697
+	tristate "Backlight driver for TI LM3697"
+	depends on I2C
+	help
+	  Say Y to enable the backlight driver for TI LM3697.
+	  Up to 3 backlight strings and 11 bit dimming is supported.
+	  PWM brightness control is also supported.
+
+config BACKLIGHT_AW99703
+	tristate "Backlight driver forAW99703"
+	depends on I2C
+	help
+	  Say Y to enable the backlight driver for AW99703.
+	  Up to 3 backlight strings and 11 bit dimming is supported.
+	  PWM brightness control is also supported.
 
 endif # BACKLIGHT_CLASS_DEVICE
 
